@@ -82,7 +82,8 @@ public class MainMenu : MonoBehaviour, IMainMenu
 
     public void SelectItemInInventory(IItem Item)
     {
-        CurrentItemName.text = Item.Name;
+        if(Item != null)
+            CurrentItemName.text = Item.Name;
     }
 
     public void DeselectItemInInventory()

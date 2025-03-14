@@ -34,6 +34,9 @@ public class MachineElement : MonoBehaviour, IMachineElement
     {
        CraftButton.interactable = FullRecipes[CurrentRecipesID].ItemsIn.Count( x => x.CurrentAmount < 1) == 0;
        Locked.gameObject.SetActive(!MachineView.Unlocked);
+
+       if(!MachineView.Unlocked)
+            LockedText.text = " Quests: " + MachineView.Quest.Name + "\n<size=40%>" + MachineView.Quest.Description;
     }
 
     public void Init(IMachineView _MachineView, IMainMenu _MainMenu)

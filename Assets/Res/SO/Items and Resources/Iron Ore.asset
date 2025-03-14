@@ -17,3 +17,10 @@ MonoBehaviour:
   ID: 1
   Type: 0
   Icon: {fileID: 21300000, guid: bb77102d644040f4db1978e99c619b6a, type: 3}
+  BonusItem:
+    IncreasesSuccessRate: 0
+    ReducesCraftingTime: 0
+  QuantityRange:
+    x: 3
+    y: 5
+  Chance: 1

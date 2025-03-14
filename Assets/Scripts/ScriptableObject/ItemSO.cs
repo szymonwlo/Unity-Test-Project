@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Unity.Mathematics;
 
 [CreateAssetMenu(fileName = "ItemSO", menuName = "ScriptableObjects/ItemSO", order = 1)]
 public class ItemSO : ScriptableObject
@@ -10,6 +10,10 @@ public class ItemSO : ScriptableObject
     public ItemType Type;
     public Sprite Icon;
     public BonusItem BonusItem;
+
+    [Header("Starting Inventory")]
+    public int2 QuantityRange;
+    public float Chance;
 }
 
 

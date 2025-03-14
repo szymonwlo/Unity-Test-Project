@@ -17,11 +17,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
     ItemOut: {fileID: 0}
-    Time: 0
-    Success: 0
+    Time: 4
+    Success: 0.85
   - ItemsIn:
     - {fileID: 11400000, guid: b6ae4b476b043114a99ebd0ae6462aba, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
     ItemOut: {fileID: 11400000, guid: 90a6b97f2165fb442a93058cb2d48f0b, type: 2}
     Time: 5
     Success: 0.8
+  RequiredQuest: {fileID: 11400000, guid: e995f9d2518df7c458d769de6e8051b8, type: 2}

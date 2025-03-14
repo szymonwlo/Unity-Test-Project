@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a292d265dbf754a8c49e8abf530306, type: 3}
+  m_Name: GameDataSO
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 11400000, guid: 0efc219185c6f494ba6bb00437d7ffa4, type: 2}
+  - {fileID: 11400000, guid: 50c40ce816c271648a634bdf4db410e5, type: 2}
+  - {fileID: 11400000, guid: aaea77e4c1673ec4db0725cddf919443, type: 2}
+  - {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
+  - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
+  - {fileID: 11400000, guid: 6e01d0fdf42094c439aa715f590b52f3, type: 2}
+  - {fileID: 11400000, guid: 90a6b97f2165fb442a93058cb2d48f0b, type: 2}
+  - {fileID: 11400000, guid: eb8bbb830bd06074d8fa6a9a4fa2b391, type: 2}
+  - {fileID: 11400000, guid: 5b88380be6a10fd4bb03005cf421f9ea, type: 2}
+  - {fileID: 11400000, guid: 4ccae676223f1b94b8abe2c5da9701a8, type: 2}
+  - {fileID: 11400000, guid: 7f5ac1ac446678e4c8450d72642f0272, type: 2}
+  - {fileID: 11400000, guid: 2347d69800d190d4c8885f9ca4c562c7, type: 2}
+  - {fileID: 11400000, guid: 4828ca7d8b408bd429000d75c7022ad4, type: 2}
+  - {fileID: 11400000, guid: f238d66c457acea49847ad3942e73891, type: 2}
+  - {fileID: 11400000, guid: b6ae4b476b043114a99ebd0ae6462aba, type: 2}
+  - {fileID: 11400000, guid: 486c2d5bf990ce344ab0d4eb50511108, type: 2}
+  - {fileID: 11400000, guid: 7aa17a4179142094fac05d1577d78ce3, type: 2}
+  ForgingRules:
+  - {fileID: 11400000, guid: 310052f59420c364eb6738a1ac95c5ae, type: 2}
+  - {fileID: 11400000, guid: 0e30816552b53c8459aac237978f283a, type: 2}
+  - {fileID: 11400000, guid: e9f4156cb37457e468e95d6cae597589, type: 2}
+  - {fileID: 11400000, guid: 2ad2eab8668dd18459f604c0af203fa9, type: 2}
+  - {fileID: 11400000, guid: 2f54db8df4349644f8ef2cbcd77faf75, type: 2}

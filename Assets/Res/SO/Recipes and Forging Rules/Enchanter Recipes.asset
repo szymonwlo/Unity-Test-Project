@@ -16,7 +16,7 @@ MonoBehaviour:
   - ItemsIn:
     - {fileID: 11400000, guid: 486c2d5bf990ce344ab0d4eb50511108, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
-    ItemOut: {fileID: 0}
+    ItemOut: {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
     Time: 0
     Success: 0
   - ItemsIn:
@@ -25,3 +25,4 @@ MonoBehaviour:
     ItemOut: {fileID: 11400000, guid: b6ae4b476b043114a99ebd0ae6462aba, type: 2}
     Time: 6
     Success: 0.75
+  RequiredQuest: {fileID: 0}

@@ -25,3 +25,4 @@ MonoBehaviour:
     ItemOut: {fileID: 11400000, guid: 0efc219185c6f494ba6bb00437d7ffa4, type: 2}
     Time: 7
     Success: 0.7
+  RequiredQuest: {fileID: 11400000, guid: 916e022fe6132284fa2326bc90ae14d9, type: 2}

@@ -20,3 +20,7 @@ MonoBehaviour:
   BonusItem:
     IncreasesSuccessRate: 0
     ReducesCraftingTime: 2
+  QuantityRange:
+    x: 1
+    y: 1
+  Chance: 0.25

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ForgingRulesSO", menuName = "ScriptableObjects/ForgingRulesSO", order = 2)]
 public class ForgingRulesSO : ScriptableObject
 {
+    public string Name;
     public List<Recipe> Recipes;
     public QuestSO RequiredQuest;
 }

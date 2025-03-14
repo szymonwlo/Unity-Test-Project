@@ -5,7 +5,7 @@ using System.Linq;
 [System.Serializable]
 public class QuestManager : IQuestManagerView
 {
-    public static IQuestManagerView QuestManagerView {get; private set;}
+    public static IQuestManagerView QuestManagerView { get; private set; }
     private ItemsManager ItemsManager;
     private List<Quest> Quests;
 
@@ -30,11 +30,16 @@ public class QuestManager : IQuestManagerView
 
         return quest;
     }
+
+    public List<IQuest> GetActiveQuests()
+    {
+        return Quests.FindAll(x => !x.IsDone).Select(x => (IQuest) x).ToList();
+    }
 }
 
 public interface IQuestManagerView
 {
-
+    List<IQuest> GetActiveQuests();
 }
 
 [System.Serializable]
@@ -50,6 +55,8 @@ public class Quest : IQuest
     }
 
 
+    public string Name => QuestSO.Name;
+    public string Description => $"Craft {Item.CraftingAmount}/{QuestSO.amount} {Item.Name}";
     public bool IsDone => QuestSO.amount <= Item.CraftingAmount;
     public int Amount => Item.CraftingAmount;
     public int RequiredAmount => QuestSO.amount;
@@ -63,6 +70,8 @@ public class Quest : IQuest
 
 public interface IQuest
 {
+    string Name { get; }
+    string Description { get; }
     bool IsDone { get; }
     int Amount { get; }
     int RequiredAmount { get; }

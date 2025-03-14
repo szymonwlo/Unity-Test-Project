@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198bda5b7be3a274689ffadbf7fb407b, type: 3}
   m_Name: Elemental
   m_EditorClassIdentifier: 
+  Name: Elemental
   Type: 0
   Item: {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
   amount: 2

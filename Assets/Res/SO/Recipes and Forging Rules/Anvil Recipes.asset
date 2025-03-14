@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0451bb62dcbf141915fe8a3f95b700, type: 3}
   m_Name: Anvil Recipes
   m_EditorClassIdentifier: 
+  Name: Anvil
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: 2347d69800d190d4c8885f9ca4c562c7, type: 2}
@@ -25,3 +26,4 @@ MonoBehaviour:
     ItemOut: {fileID: 11400000, guid: 5b88380be6a10fd4bb03005cf421f9ea, type: 2}
     Time: 5
     Success: 0.85
+  RequiredQuest: {fileID: 0}

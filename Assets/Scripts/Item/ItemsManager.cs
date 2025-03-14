@@ -5,9 +5,9 @@ using System;
 using NUnit.Framework;
 
 [System.Serializable]
-public class ItemsManager: IItemsManagerView
+public class ItemsManager : IItemsManagerView
 {
-    public static IItemsManagerView ItemsManagerView {get; private set;}
+    public static IItemsManagerView ItemsManagerView { get; private set; }
     private List<Item> Items;
 
     public ItemsManager(List<ItemSO> ItemSO)
@@ -23,11 +23,13 @@ public class ItemsManager: IItemsManagerView
                 item.CurrentAmount = UnityEngine.Random.Range(ItemSO[i].QuantityRange.x, ItemSO[i].QuantityRange.y);
             else if (ItemSO[i].Chance > 0 && new System.Random().NextDouble() <= ItemSO[i].Chance)
                 item.CurrentAmount = UnityEngine.Random.Range(ItemSO[i].QuantityRange.x, ItemSO[i].QuantityRange.y);
-            
-            
+
+
 
             Items.Add(item);
         }
+
+        Items = Items.OrderBy( x => x.ID).ToList();
     }
 
     public IItem FindItem(int ID)
@@ -38,30 +40,51 @@ public class ItemsManager: IItemsManagerView
 
     public List<IItem> GetItems()
     {
-        return Items.Select( x => (IItem) x).ToList();
+        return Items.Select(x => (IItem)x).ToList();
     }
 
-    public BonusItem GetBonusItem()
+    public BonusItem GetGlobalBonus()
     {
-        BonusItem b = new BonusItem();
+        BonusItem globalBonus = new BonusItem();
 
-        foreach(Item item in Items)
+        foreach (Item item in Items)
         {
-            if(item.CurrentAmount > 0)
+            if (item.CurrentAmount > 0)
             {
-                b.IncreasesSuccessRate = Mathf.Max(b.IncreasesSuccessRate, item.BonusItem.IncreasesSuccessRate);
-                b.ReducesCraftingTime = Mathf.Max(b.ReducesCraftingTime, item.BonusItem.ReducesCraftingTime);
+                globalBonus.IncreasesSuccessRate += item.BonusItem.IncreasesSuccessRate;
+                globalBonus.ReducesCraftingTime += item.BonusItem.ReducesCraftingTime;
             }
         }
 
-        return b;
+        return globalBonus;
+    }
+
+    private bool HasAnyBonus(Item item)
+    {
+        return item.BonusItem.IncreasesSuccessRate > 0 || item.BonusItem.ReducesCraftingTime > 0;
+    }
+
+    public List<IBonusItemDescription> GetAllBonusItems()
+    {
+        List<IBonusItemDescription> items = new List<IBonusItemDescription>();
+
+        foreach (Item item in Items)
+        {
+             if (item.CurrentAmount > 0 && HasAnyBonus(item))
+             {
+                items.Add( new BonusItemDescription(item) );
+             }
+        }
+
+        return items;
     }
 
 }
 
 public interface IItemsManagerView
 {
-    BonusItem GetBonusItem();
+    List<IBonusItemDescription> GetAllBonusItems();
+    List<IItem> GetItems();
 }
 
 
@@ -70,6 +93,7 @@ public interface IItemsManagerView
 public class Item : IItem
 {
     private ItemSO ItemSO;
+    public string Name => ItemSO.Name;
     public int CurrentAmount { get; set; }
     public int CraftingAmount { get; set; }
     public int ID => ItemSO.ID;
@@ -86,6 +110,7 @@ public class Item : IItem
 
 public interface IItem
 {
+    string Name { get; }
     int CurrentAmount { get; }
     int CraftingAmount { get; }
     int ID { get; }

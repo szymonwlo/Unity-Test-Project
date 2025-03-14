@@ -5,7 +5,7 @@ using System.Linq;
 [System.Serializable]
 public class MachinesManager : IMachinesManagerView
 {
-    public static IMachinesManagerView MachinesManagerView {get; private set;}
+    public static IMachinesManagerView MachinesManagerView { get; private set; }
     private List<Machine> Machines;
     private QuestManager QuestManager;
 
@@ -18,7 +18,7 @@ public class MachinesManager : IMachinesManagerView
         {
             Machine machine = new Machine(ForgingRules[i]);
             if (ForgingRules[i].RequiredQuest != null)
-                machine.Quest = this.QuestManager.CreateOrGetQuest(ForgingRules[i].RequiredQuest);
+                machine.AddQuest(this.QuestManager.CreateOrGetQuest(ForgingRules[i].RequiredQuest));
 
             Machines.Add(machine);
         }
@@ -29,23 +29,28 @@ public class MachinesManager : IMachinesManagerView
         Machines.ForEach(x => x.Update(DeltaTime));
     }
 
+    public List<IMachineView> GetAllMachines()
+    {
+        return Machines.Select( x => (IMachineView) x).ToList();
+    }
+
 }
 
 public interface IMachinesManagerView
 {
-
+    List<IMachineView> GetAllMachines();
 }
 
 
 [System.Serializable]
-public class Machine : IMachine
+public class Machine : IMachineView
 {
     private ForgingRulesSO ForgingRulesSO;
-    public IQuest Quest { get; set; }
-
-    public float CraftingTime { get; set; }
-    public bool IsDone { get; set; }
-
+    public IQuest Quest { get; private set; }
+    public float CraftingTime { get; private set; }
+    public bool IsDone { get; private set; }
+    public string Name => ForgingRulesSO.Name;
+    public bool Unlocked => Quest == null || Quest.IsDone ? true : false;
 
 
     public Machine(ForgingRulesSO forgingRulesSO)
@@ -54,9 +59,14 @@ public class Machine : IMachine
         IsDone = true;
     }
 
+    public void AddQuest(IQuest _Quest)
+    {
+        Quest = _Quest;
+    }
+
     public void Update(float DeltaTime)
     {
-        if(!IsDone)
+        if (!IsDone)
         {
             CraftingTime += DeltaTime;
 
@@ -64,7 +74,10 @@ public class Machine : IMachine
     }
 }
 
-public interface IMachine
+public interface IMachineView
 {
+    IQuest Quest { get; }
     bool IsDone { get; }
+    string Name { get; }
+    bool Unlocked { get; }
 }

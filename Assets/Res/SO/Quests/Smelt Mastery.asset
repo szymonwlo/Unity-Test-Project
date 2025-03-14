@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198bda5b7be3a274689ffadbf7fb407b, type: 3}
   m_Name: Smelt Mastery
   m_EditorClassIdentifier: 
+  Name: Smelt Mastery
   Type: 0
   Item: {fileID: 11400000, guid: 2347d69800d190d4c8885f9ca4c562c7, type: 2}
   amount: 5

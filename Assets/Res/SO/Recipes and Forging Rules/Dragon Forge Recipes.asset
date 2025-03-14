@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0451bb62dcbf141915fe8a3f95b700, type: 3}
   m_Name: Dragon Forge Recipes
   m_EditorClassIdentifier: 
+  Name: Dragon Forge
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: 486c2d5bf990ce344ab0d4eb50511108, type: 2}

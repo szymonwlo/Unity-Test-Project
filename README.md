@@ -1,4 +1,5 @@
-Required Unity version: 6000.0.41f1 Starting scene: Loader.scene
+Required Unity version: 6000.0.41f1
+Starting scene: Loader.scene
 
 You can add and remove items available in the game (Items, Resources, Recipes) by editing the GameDataSO file (Assets/Res/SO).
 

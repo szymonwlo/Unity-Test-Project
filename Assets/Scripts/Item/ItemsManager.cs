@@ -94,7 +94,9 @@ public class ItemsManager : IItemsManagerView
 
     public void IncreaseAmount(int ID)
     {
-        Items.Find(x => x.ID == ID).CurrentAmount++;
+        Item item = Items.Find(x => x.ID == ID);
+        item.CurrentAmount++;
+        item.CraftingAmount++;
         RefreshItems?.Invoke();
     }
 

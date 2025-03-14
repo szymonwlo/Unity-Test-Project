@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dragon Forge Recipes
   m_EditorClassIdentifier: 
   Name: Dragon Forge
+  Icon: {fileID: 21300000, guid: 85c8907959acd0b4886a43888fbdd897, type: 3}
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: 486c2d5bf990ce344ab0d4eb50511108, type: 2}

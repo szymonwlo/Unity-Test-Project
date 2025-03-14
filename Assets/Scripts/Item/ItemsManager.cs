@@ -10,6 +10,8 @@ public class ItemsManager : IItemsManagerView
     public static IItemsManagerView ItemsManagerView { get; private set; }
     private List<Item> Items;
 
+    public Action RefreshItems { get; set; }
+
     public ItemsManager(List<ItemSO> ItemSO)
     {
         ItemsManagerView = this;
@@ -29,7 +31,7 @@ public class ItemsManager : IItemsManagerView
             Items.Add(item);
         }
 
-        Items = Items.OrderBy( x => x.ID).ToList();
+        Items = Items.OrderBy(x => x.ID).ToList();
     }
 
     public IItem FindItem(int ID)
@@ -70,13 +72,30 @@ public class ItemsManager : IItemsManagerView
 
         foreach (Item item in Items)
         {
-             if (item.CurrentAmount > 0 && HasAnyBonus(item))
-             {
-                items.Add( new BonusItemDescription(item) );
-             }
+            if (item.CurrentAmount > 0 && HasAnyBonus(item))
+            {
+                items.Add(new BonusItemDescription(item));
+            }
         }
 
         return items;
+    }
+
+
+    public void ReduceAmount(List<int> _ID)
+    {
+        foreach (int id in _ID)
+        {
+            Items.Find(x => x.ID == id).CurrentAmount--;
+        }
+
+        RefreshItems?.Invoke();
+    }
+
+    public void IncreaseAmount(int ID)
+    {
+        Items.Find(x => x.ID == ID).CurrentAmount++;
+        RefreshItems?.Invoke();
     }
 
 }
@@ -85,6 +104,11 @@ public interface IItemsManagerView
 {
     List<IBonusItemDescription> GetAllBonusItems();
     List<IItem> GetItems();
+    IItem FindItem(int ID);
+    BonusItem GetGlobalBonus();
+    void ReduceAmount(List<int> ID);
+    void IncreaseAmount(int ID);
+    Action RefreshItems {get; set;}
 }
 
 
@@ -97,6 +121,7 @@ public class Item : IItem
     public int CurrentAmount { get; set; }
     public int CraftingAmount { get; set; }
     public int ID => ItemSO.ID;
+    public Sprite Icon => ItemSO.Icon;
     public BonusItem BonusItem => ItemSO.BonusItem;
 
     public Item(ItemSO itemSO)
@@ -114,4 +139,5 @@ public interface IItem
     int CurrentAmount { get; }
     int CraftingAmount { get; }
     int ID { get; }
+    Sprite Icon { get; }
 }

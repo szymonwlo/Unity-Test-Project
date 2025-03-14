@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0451bb62dcbf141915fe8a3f95b700, type: 3}
   m_Name: Smelter Recipes
   m_EditorClassIdentifier: 
+  Name: Smelter
+  Icon: {fileID: 21300000, guid: bb22a3dec9087a1468626d5319341c0e, type: 3}
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: 4828ca7d8b408bd429000d75c7022ad4, type: 2}
@@ -23,3 +25,4 @@ MonoBehaviour:
     ItemOut: {fileID: 11400000, guid: 4ccae676223f1b94b8abe2c5da9701a8, type: 2}
     Time: 3
     Success: 1
+  RequiredQuest: {fileID: 0}

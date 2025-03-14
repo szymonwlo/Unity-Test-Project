@@ -6,6 +6,7 @@ using UnityEngine;
 public class ForgingRulesSO : ScriptableObject
 {
     public string Name;
+    public Sprite Icon;
     public List<Recipe> Recipes;
     public QuestSO RequiredQuest;
 }

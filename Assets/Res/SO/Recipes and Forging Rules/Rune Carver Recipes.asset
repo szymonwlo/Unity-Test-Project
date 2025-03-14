@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0451bb62dcbf141915fe8a3f95b700, type: 3}
   m_Name: Rune Carver Recipes
   m_EditorClassIdentifier: 
+  Name: Rune Carver
+  Icon: {fileID: 21300000, guid: fbc584cfbfc9cce4fa25c2ebdab8260b, type: 3}
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
-    ItemOut: {fileID: 0}
+    ItemOut: {fileID: 11400000, guid: 6e01d0fdf42094c439aa715f590b52f3, type: 2}
     Time: 4
     Success: 0.85
   - ItemsIn:

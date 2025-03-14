@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [System.Serializable]
 public class MachinesManager : IMachinesManagerView
@@ -31,7 +32,7 @@ public class MachinesManager : IMachinesManagerView
 
     public List<IMachineView> GetAllMachines()
     {
-        return Machines.Select( x => (IMachineView) x).ToList();
+        return Machines.Select(x => (IMachineView)x).ToList();
     }
 
 }
@@ -47,16 +48,20 @@ public class Machine : IMachineView
 {
     private ForgingRulesSO ForgingRulesSO;
     public IQuest Quest { get; private set; }
-    public float CraftingTime { get; private set; }
-    public bool IsDone { get; private set; }
     public string Name => ForgingRulesSO.Name;
+    public Sprite Icon => ForgingRulesSO.Icon;
     public bool Unlocked => Quest == null || Quest.IsDone ? true : false;
+    public bool Working => CurrentCrafting != null;
+    public float Progress => CurrentCrafting == null ? 0 : Mathf.InverseLerp(MaxTime, 0, Time);
 
+    private FullRecipe? CurrentCrafting;
+    private float Time;
+    private float MaxTime;
 
     public Machine(ForgingRulesSO forgingRulesSO)
     {
         ForgingRulesSO = forgingRulesSO;
-        IsDone = true;
+
     }
 
     public void AddQuest(IQuest _Quest)
@@ -66,18 +71,74 @@ public class Machine : IMachineView
 
     public void Update(float DeltaTime)
     {
-        if (!IsDone)
+        if (CurrentCrafting != null)
         {
-            CraftingTime += DeltaTime;
+            Time -= DeltaTime;
 
+            if (Time <= 0)
+            {
+                if (CurrentCrafting.Value.Success == 1 || new System.Random().NextDouble() <= CurrentCrafting.Value.Success)
+                    ItemsManager.ItemsManagerView.IncreaseAmount(CurrentCrafting.Value.ItemOut.ID);
+                
+
+                CurrentCrafting = null;
+            }
         }
+    }
+
+    public void Craft(FullRecipe _FullRecipe)
+    {
+        CurrentCrafting = _FullRecipe;
+
+        BonusItem bonusItem = ItemsManager.ItemsManagerView.GetGlobalBonus();
+
+        MaxTime = Time = Mathf.Max(_FullRecipe.Time - bonusItem.ReducesCraftingTime,0);
+
+        ItemsManager.ItemsManagerView.ReduceAmount(_FullRecipe.ItemsIn.Select(x => x.ID).ToList());
+    }
+
+    public List<FullRecipe> GetFullRecipe()
+    {
+        List<FullRecipe> fullRecipes = new List<FullRecipe>();
+
+        foreach (Recipe recipe in ForgingRulesSO.Recipes)
+        {
+            FullRecipe r = new FullRecipe();
+            r.Time = recipe.Time;
+            r.Success = recipe.Success;
+            r.ItemOut = ItemsManager.ItemsManagerView.FindItem(recipe.ItemOut.ID);
+
+            r.ItemsIn = new List<IItem>();
+            foreach (ItemSO item in recipe.ItemsIn)
+            {
+                r.ItemsIn.Add(ItemsManager.ItemsManagerView.FindItem(item.ID));
+            }
+
+            fullRecipes.Add(r);
+        }
+
+
+        return fullRecipes;
     }
 }
 
 public interface IMachineView
 {
     IQuest Quest { get; }
-    bool IsDone { get; }
     string Name { get; }
     bool Unlocked { get; }
+    Sprite Icon { get; }
+    bool Working { get; }
+    float Progress { get; }
+    List<FullRecipe> GetFullRecipe();
+    void Craft(FullRecipe _FullRecipe);
+}
+
+
+public struct FullRecipe
+{
+    public List<IItem> ItemsIn;
+    public IItem ItemOut;
+    public float Time;
+    public float Success;
 }

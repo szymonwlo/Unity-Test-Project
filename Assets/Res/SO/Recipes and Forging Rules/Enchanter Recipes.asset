@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Enchanter Recipes
   m_EditorClassIdentifier: 
   Name: Enchanter
+  Icon: {fileID: 21300000, guid: c396f6b40da201047a70ba021322b5cb, type: 3}
   Recipes:
   - ItemsIn:
     - {fileID: 11400000, guid: 486c2d5bf990ce344ab0d4eb50511108, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
     ItemOut: {fileID: 11400000, guid: d83c4bd322cdd724382a44a656254afe, type: 2}
-    Time: 0
-    Success: 0
+    Time: 5
+    Success: 0.8
   - ItemsIn:
     - {fileID: 11400000, guid: 5b88380be6a10fd4bb03005cf421f9ea, type: 2}
     - {fileID: 11400000, guid: 1e245a9353ff0944096bac3dd772a64d, type: 2}
